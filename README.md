@@ -6,7 +6,7 @@
 
 ```bash
 git clone https://github.com/hndrr/langchain-search.git
-cd langchain-test
+cd langchain-search
 ```
 
 ### 参考
