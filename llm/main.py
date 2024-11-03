@@ -4,22 +4,11 @@ import uvicorn
 from fastapi import FastAPI
 from langchain_openai import ChatOpenAI
 from langserve import add_routes  # type: ignore
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+from translate import translate_text
 
-
-model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
-
-parser = StrOutputParser()
-
-messages = ChatPromptTemplate(
-    [
-        ("system", "Translate the following text to {target_language}"),
-        ("user", "{text}"),
-    ]
+chain = translate_text(  # type: ignore
+    llm="gpt-4o-mini",
 )
-
-chain = messages | model | parser  # type: ignore
 
 app = FastAPI(
     title="LLM Search",
@@ -27,12 +16,14 @@ app = FastAPI(
     version="0.0.1",
 )
 
+## add_routesの第2引数にはchainを指定する
 add_routes(
     app,
     ChatOpenAI(model="gpt-4o-2024-08-06", temperature=0),
     path="/openai",
 )
 
+## 翻訳API
 add_routes(
     app,
     chain,
