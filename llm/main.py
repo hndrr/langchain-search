@@ -23,13 +23,6 @@ async def root():
     return {"message": "Hello from FastAPI!"}
 
 
-# 別のFastAPIエンドポイント
-@app.post("/custom_endpoint")
-async def custom_endpoint(request: Request):  # type: ignore
-    data = await request.json()  # type: ignore
-    return {"received_data": data}  # type: ignore
-
-
 ## add_routesの第2引数にはchainを指定する
 add_routes(
     app,
