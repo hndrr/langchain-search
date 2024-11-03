@@ -28,6 +28,14 @@ OPENAI_API_KEY=""
 GOOGLE_API_KEY=""
 ```
 
+### 実行
+
+```bash
+uvicorn main:app --reload
+```
+
+`http://127.0.0.1:8000/docs` にアクセスして、APIを試すことができます。
+
 ### 参考
 
 - [LangChainとLangGraphによるRAG・AIエージェント［実践］入門](https://gihyo.jp/book/2024/978-4-297-14530-9)
