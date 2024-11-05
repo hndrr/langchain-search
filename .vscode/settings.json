@@ -1,5 +1,5 @@
 {
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": "explicit",
@@ -24,11 +24,5 @@
     "prettier.configPath": "front/.prettierrc",  
     "python.analysis.extraPaths" : [
         "llm/venv/lib/python3.11/site-packages"
-    ],
-    "python.linting.pylintEnabled": false,
-    "python.linting.flake8Enabled": true,
-    "python.linting.flake8Path": "llm/venv/bin/flake8",
-    "python.linting.flake8Args": [
-        "--max-line-length=120"
     ],
 }
