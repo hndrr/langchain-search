@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lintFix": "eslint --fix . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "tsc": "tsc --noEmit",
+    "prettier": "prettier --check src/",
+    "prettierFix": "prettier --write src/"
   },
   "dependencies": {
     "ai": "^3.4.33",
