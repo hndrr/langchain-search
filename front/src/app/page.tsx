@@ -6,7 +6,7 @@ import { SourceMessage } from "@/components/SourceMessage";
 export default function Home() {
   return (
     <div className="font-[family-name:var(--font-geist-sans)]">
-      <main className="flex items-center flex-col">
+      <main className="flex flex-col items-center">
         <div className="flex-1">
           <QuestionMessage content="Dummy Question" />
           <SearchMessage content="Dummy Search Message" />
@@ -14,11 +14,12 @@ export default function Home() {
           <AnswerMessage content="Dummy Answer Message" />
         </div>
         <form>
-          <input 
-            type="text"
+          <input
+            className="rounded-lg border-2 border-gray-300 p-2"
             name="message"
             placeholder="テキストを入力"
-            className="border-2 border-gray-300 p-2 rounded-lg" />
+            type="text"
+          />
         </form>
       </main>
     </div>
