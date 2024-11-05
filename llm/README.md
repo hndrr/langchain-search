@@ -36,6 +36,8 @@ uvicorn main:app --reload
 
 `http://127.0.0.1:8000/docs` にアクセスして、APIを試すことができます。
 
+langserveのapp_routesでendpointを定義していれば `http://127.0.0.1:8000/translate/playground/` などで動作を試せます
+
 ### 参考
 
 - [LangChainとLangGraphによるRAG・AIエージェント［実践］入門](https://gihyo.jp/book/2024/978-4-297-14530-9)
