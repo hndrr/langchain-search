@@ -1,12 +1,13 @@
-import config  # type: ignore
+import config
 import uvicorn
 
 from fastapi import FastAPI
 from langchain_openai import ChatOpenAI
-from langserve import add_routes  # type: ignore
+from langserve import add_routes
 from translate import translate_text
+from weather import compiled
 
-chain = translate_text(  # type: ignore
+chain = translate_text(
     llm="gpt-4o-mini",
 )
 
@@ -35,6 +36,12 @@ add_routes(
     app,
     chain,
     path="/translate",
+)
+
+add_routes(
+    app,
+    compiled,
+    path="/graph",
 )
 
 if __name__ == "__main__":
