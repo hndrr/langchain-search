@@ -15,6 +15,9 @@
   "dependencies": {
     "ai": "^3.4.33",
     "next": "15.0.2",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-loader": "^8.1.1",
+    "postcss-preset-env": "^10.0.9",
     "react": "19.0.0-rc-02c0e824-20241028",
     "react-dom": "19.0.0-rc-02c0e824-20241028"
   },
