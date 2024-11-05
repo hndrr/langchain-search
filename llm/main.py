@@ -45,4 +45,5 @@ add_routes(
 )
 
 if __name__ == "__main__":
+    # compiled.get_graph().print_ascii()
     uvicorn.run(app, host="localhost", port=8000)

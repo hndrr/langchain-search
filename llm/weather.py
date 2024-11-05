@@ -1,5 +1,6 @@
 from typing import TypedDict, Annotated, Literal
 from langchain_core.tools import tool
+from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.graph import StateGraph, END, START
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import ToolNode
@@ -27,7 +28,8 @@ def should_continue(state: State) -> Literal["__end__", "tools"]:
     else:
         return "tools"
 
-tools = [weather]
+# tools = [weather]
+tools = [TavilySearchResults(max_results=2)]
 
 model = ChatOpenAI(model="gpt-4o-2024-08-06")
 model = model.bind_tools(tools)
