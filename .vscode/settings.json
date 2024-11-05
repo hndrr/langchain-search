@@ -1,0 +1,34 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "files.associations": {
+      "*.css": "tailwindcss"
+    },
+    "tailwindCSS.experimental.classRegex": [
+      [
+        "cva\\(([^)(]*(?:\\([^)(]*(?:\\([^)(]*(?:\\([^)(]*\\)[^)(]*)*\\)[^)(]*)*\\)[^)(]*)*)\\)",
+        "'([^']*)'"
+      ]
+    ],
+    "typescript.preferences.importModuleSpecifier": "non-relative",
+    "typescript.preferences.autoImportFileExcludePatterns": [
+      "styled-system/jsx",
+      "styled-jsx/css",
+      "@radix-ui/react-*",
+      "next/router"
+    ],
+    "prettier.configPath": "front/.prettierrc",  
+    "python.analysis.extraPaths" : [
+        "llm/venv/lib/python3.11/site-packages"
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Path": "llm/venv/bin/flake8",
+    "python.linting.flake8Args": [
+        "--max-line-length=120"
+    ],
+}

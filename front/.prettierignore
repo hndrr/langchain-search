@@ -1,0 +1,14 @@
+node_modules
+.next/
+.nuxt/
+build/
+dist/
+out/
+public/
+package-lock.json
+yarn.lock
+tsconfig.json
+src/api/aspida/*
+styled-system/
+src/components/ui/*
+!src/components/ui/custom/*
