@@ -36,7 +36,7 @@ async def read_user(user_id: int) -> dict:
     
     return {"user_id": user.id, "user_name": user.name}
 
-@app.get("/books/")
+@app.get("/books")
 async def read_books(
     category: str | None = None,
 )-> list[dict[str, str]]:
