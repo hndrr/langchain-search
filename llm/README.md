@@ -50,9 +50,8 @@ uvicorn api.main:app --reload
 langserveのapp_routesでendpointを定義していれば `http://127.0.0.1:8000/translate/playground/` などで動作を試せます
 
 ### 参考
-
-- [LangChainとLangGraphによるRAG・AIエージェント［実践］入門](https://gihyo.jp/book/2024/978-4-297-14530-9)
-- [Software Design 2024年8月号 第1特集 LangChainではじめるLLMアプリ開発入門](https://gihyo.jp/magazine/SD/archive/2024/202408)
+- [FastAPI](https://fastapi.tiangolo.com/ja/)
+- [Zenn books FastAPI入門](https://zenn.dev/sh0nk/books/537bb028709ab9)
+- [動かして学ぶ！Python FastAPI開発入門](https://www.shoeisha.co.jp/book/detail/9784798177229)
 - [LangChain](https://langchain.com/)
 - [LangSmith](https://smith.langchain.com/)
-- [Gradio](https://www.gradio.app/)
