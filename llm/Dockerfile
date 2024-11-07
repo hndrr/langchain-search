@@ -1,0 +1,20 @@
+FROM python:3.10-slim
+ENV PYTHONUNBUFFERED=1
+
+# Set the working directory in the container
+WORKDIR /src
+
+# Copy the requirements file into the container
+COPY requirements.txt ./
+
+# Update pip to the latest version
+RUN pip install --no-cache-dir --upgrade pip
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the current directory contents into the container at /src
+COPY . .
+
+# Make port 8000 available to the world outside this container
+ENTRYPOINT [ "uvicorn", "api.main:app", "--host", "0.0.0.0"]
