@@ -1,5 +1,10 @@
 # llm
 
+## 仮想環境を作成(dockerの場合)
+```bashd
+docker compose build
+```
+
 ## 仮想環境を作成(venvの場合)
 
 ```bash
@@ -7,7 +12,7 @@ python -m venv .venv
 . venv/bin/activate
 ```
 
-依存関係をインストール
+### 依存関係をインストール
 
 ```bash
 pip install -r requirements.txt
@@ -28,8 +33,14 @@ OPENAI_API_KEY=""
 GOOGLE_API_KEY=""
 ```
 
-### 実行
+## 実行
+### dockerの場合
 
+```
+docker compose up
+```
+
+### ローカル環境の場合
 ```bash
 uvicorn api.main:app --reload
 ```
