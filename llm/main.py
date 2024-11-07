@@ -1,4 +1,3 @@
-from typing import Optional
 import config
 from data import User, get_user
 from bookdata import get_books_by_category
@@ -30,7 +29,7 @@ async def root():
 @app.get("/users/{user_id}")
 async def read_user(user_id: int) -> dict:
     # ユーザ情報の取得
-    user: Optional[User] = get_user(user_id)
+    user: User | None = get_user(user_id)
     if user is None:
         # ユーザが見つからない場合404エラーを返す
         raise HTTPException(status_code=404, detail="User not found")
@@ -39,7 +38,7 @@ async def read_user(user_id: int) -> dict:
 
 @app.get("/books/")
 async def read_books(
-    category: Optional[str] = None,
+    category: str | None = None,
 )-> list[dict[str, str]]:
     # クエリパラメータで指定されたカテゴリに基づいて書籍を検索する
     result = get_books_by_category(category)
