@@ -1,7 +1,10 @@
+from typing import Optional
 import config
+from data import User, get_user
+from bookdata import get_books_by_category
 import uvicorn
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from langchain_openai import ChatOpenAI
 from langserve import add_routes
 from translate import translate_text
@@ -23,6 +26,25 @@ app = FastAPI(
 async def root():
     return {"message": "Hello from FastAPI!"}
 
+
+@app.get("/users/{user_id}")
+async def read_user(user_id: int) -> dict:
+    # ユーザ情報の取得
+    user: Optional[User] = get_user(user_id)
+    if user is None:
+        # ユーザが見つからない場合404エラーを返す
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    return {"user_id": user.id, "user_name": user.name}
+
+@app.get("/books/")
+async def read_books(
+    category: Optional[str] = None,
+)-> list[dict[str, str]]:
+    # クエリパラメータで指定されたカテゴリに基づいて書籍を検索する
+    result = get_books_by_category(category)
+
+    return [{"id": book.id, "title": book.title, "category": book.category} for book in result]
 
 ## add_routesの第2引数にはchainを指定する
 add_routes(
