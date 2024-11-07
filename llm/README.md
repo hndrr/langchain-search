@@ -10,11 +10,8 @@ docker compose build
 ```bash
 python -m venv .venv
 . venv/bin/activate
-```
 
-### 依存関係をインストール
-
-```bash
+# 依存関係のインストール
 pip install -r requirements.txt
 ```
 
