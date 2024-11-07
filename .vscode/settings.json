@@ -30,8 +30,8 @@
   },
   "python.languageServer": "Pylance",
   // "python.analysis.typeCheckingMode": "strict",
-  "python.analysis.extraPaths" : [
-      "llm/venv/lib/python3.11/site-packages"
+  "python.analysis.extraPaths": [
+    "llm/venv/lib/python3.11/site-packages"
   ],
   "files.exclude": {
     "**/__pycache__": true,
