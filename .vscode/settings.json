@@ -1,31 +1,40 @@
 {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": "explicit",
-      "source.organizeImports": "explicit"
-    },
-    "files.associations": {
-      "*.css": "tailwindcss"
-    },
-    "tailwindCSS.experimental.classRegex": [
-      [
-        "cva\\(([^)(]*(?:\\([^)(]*(?:\\([^)(]*(?:\\([^)(]*\\)[^)(]*)*\\)[^)(]*)*\\)[^)(]*)*)\\)",
-        "'([^']*)'"
-      ]
-    ],
-    "typescript.preferences.importModuleSpecifier": "non-relative",
-    "typescript.preferences.autoImportFileExcludePatterns": [
-      "styled-system/jsx",
-      "styled-jsx/css",
-      "@radix-ui/react-*",
-      "next/router"
-    ],
-    "prettier.configPath": "front/.prettierrc",  
-    "eslint.workingDirectories": [
-      "front"
-    ],
-    "python.analysis.extraPaths" : [
-        "llm/venv/lib/python3.11/site-packages"
-    ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "cva\\(([^)(]*(?:\\([^)(]*(?:\\([^)(]*(?:\\([^)(]*\\)[^)(]*)*\\)[^)(]*)*\\)[^)(]*)*)\\)",
+      "'([^']*)'"
+    ]
+  ],
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "styled-system/jsx",
+    "styled-jsx/css",
+    "@radix-ui/react-*",
+    "next/router"
+  ],
+  "prettier.configPath": "front/.prettierrc",  
+  "eslint.workingDirectories": [
+    "front"
+  ],
+  "[python]": {
+    "editor.formatOnSave": true
+  },
+  "python.languageServer": "Pylance",
+  // "python.analysis.typeCheckingMode": "strict",
+  "python.analysis.extraPaths" : [
+      "llm/venv/lib/python3.11/site-packages"
+  ],
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true
+  },
 }
