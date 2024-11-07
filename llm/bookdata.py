@@ -1,14 +1,10 @@
-from typing import Optional
+from pydantic import BaseModel
 
 # 書籍情報を表すクラス
-class Book:
-    def __init__(self, id: str, title: str, category: str):
-        # 書籍ID
-        self.id = id
-        # タイトル
-        self.title = title
-        # カテゴリ
-        self.category = category
+class Book(BaseModel):
+    id: str
+    title: str
+    category: str
 
 # ダミーの書籍情報リスト
 # category"technical：技術書、comics：コミック、magazine：雑誌"
@@ -24,7 +20,7 @@ books = [
 # カテゴリに基づいて書籍を検索する関数
 # もしcategoryがNoneなら、すべての書籍を返す
 def get_books_by_category(
-    category: Optional[str] = None
+    category: str | None = None
     )-> list[Book]:
     if category is None:
         # カテゴリが指定されていない場合は全ての書籍を返す

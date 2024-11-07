@@ -1,13 +1,10 @@
-from typing import Optional
+from pydantic import BaseModel
 
 # Userクラス
 # ユーザのIDと名前を属性として持つ
-class User:
-    def __init__(self, id: int, name: str):
-        # ユーザId
-        self.id = id
-        # ユーザ名
-        self.name = name
+class User(BaseModel):
+    id: int
+    name: str
 
 # ダミーデータベースとして機能するユーザリスト
 user_list = [
@@ -20,7 +17,7 @@ user_list = [
 # user_listから検索する関数
 # 引数：ユーザID (整数)
 # 戻り値：UserオブジェクトまたはNone (見つからない場合)
-def get_user(user_id: int) -> Optional[User]:
+def get_user(user_id: int) -> User | None:
     for user in user_list:
         if user.id == user_id:
             # 指定されたIDを持つユーザが見つかった場合
