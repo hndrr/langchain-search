@@ -1,4 +1,5 @@
-from typing import TypedDict, Annotated, Literal
+from pydantic import BaseModel, Field
+from typing import List, Literal
 from langchain_core.tools import tool
 from langchain_community.tools.tavily_search import TavilySearchResults
 from langgraph.graph import StateGraph, END, START
@@ -12,8 +13,8 @@ def weather(query: str):
     """今日の天気予報をお知らせします"""
     return ["今日の天気は晴れです"]
 
-class State(TypedDict):
-    messages: Annotated[list[str], add_messages]
+class State(BaseModel):
+    messages: List[str] = Field(..., min_length=1)
 
 def call_model (state: State, config: RunnableConfig):
     messages = state["messages"]

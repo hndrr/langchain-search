@@ -31,7 +31,7 @@ GOOGLE_API_KEY=""
 ### 実行
 
 ```bash
-uvicorn main:app --reload
+uvicorn api.main:app --reload
 ```
 
 `http://127.0.0.1:8000/docs` にアクセスして、APIを試すことができます。

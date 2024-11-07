@@ -1,6 +1,6 @@
-import config
-from data import User, get_user
-from bookdata import get_books_by_category
+import config as config
+from data.data import User, get_user
+from data.bookdata import get_books_by_category
 import uvicorn
 
 from fastapi import FastAPI, HTTPException
