@@ -7,8 +7,8 @@ from data.data import User, get_user
 from fastapi import FastAPI, HTTPException, Request
 from langchain_openai import ChatOpenAI
 from langserve import add_routes
-from translate import translate_text
-from weather import compiled
+from api.services.translate import translate_text
+from api.services.weather import compiled
 
 chain = translate_text(
     llm="gpt-4o-mini",
