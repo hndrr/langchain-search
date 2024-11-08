@@ -1,9 +1,10 @@
 import config as config
+import uvicorn
+import logging
 from data.data import User, get_user
 from schema.book_schemas import BookResponseSchema, BookSchema, books, get_books_by_category
-import uvicorn
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from langchain_openai import ChatOpenAI
 from langserve import add_routes
 from translate import translate_text
@@ -19,18 +20,38 @@ app = FastAPI(
     version="0.0.1",
 )
 
+# ログ設定
+logging.basicConfig(level=logging.INFO,  # 必要に応じてレベルを調整
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[logging.StreamHandler()])  # コンソールにログを出力
 
 # 通常のFastAPIエンドポイント
 @app.get("/")
 async def root():
+    logging.info("ルートエンドポイントにアクセス")
     return {"message": "Hello from FastAPI!"}
 
+@app.post("/log")
+async def log_endpoint(request: Request):
+    body = await request.json()
+    logging.info(f"ボディが含まれるリクエストを受信：{body}")
+    return {"status": "logged"}
+
+@app.get("/performance")
+def performance_metrics():
+    # パフォーマンスメトリクスのログ記録の例
+    start_time = logging.datetime.now()
+    # 処理を模擬
+    logging.info(f"パフォーマンスメトリクスが{start_time}に要求されました")
+    return {"metrics": "sample_metrics"}
 
 @app.get("/users/{user_id}")
 async def read_user(user_id: int) -> dict:
     # ユーザ情報の取得
+    logging.debug(f"ユーザ情報取得: user_id={user_id}")
     user: User | None = get_user(user_id)
     if user is None:
+        logging.error(f"ユーザ情報が見つかりません: user_id={user_id}")
         # ユーザが見つからない場合404エラーを返す
         raise HTTPException(status_code=404, detail="User not found")
     
