@@ -31,7 +31,8 @@
   "python.languageServer": "Pylance",
   // "python.analysis.typeCheckingMode": "strict",
   "python.analysis.extraPaths": [
-    "llm/venv/lib/python3.11/site-packages"
+    "llm/venv/lib/python3.11/site-packages",
+    "./llm/"
   ],
   "files.exclude": {
     "**/__pycache__": true,
