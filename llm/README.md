@@ -37,6 +37,12 @@ GOOGLE_API_KEY=""
 docker compose up
 ```
 
+#### container内に入る
+
+```
+docker container exec -it <container> /bin/bash
+```
+
 ### ローカル環境の場合
 ```bash
 uvicorn api.main:app --reload
@@ -45,6 +51,7 @@ uvicorn api.main:app --reload
 `http://127.0.0.1:8000/docs` にアクセスして、APIを試すことができます。
 
 langserveのapp_routesでendpointを定義していれば `http://127.0.0.1:8000/translate/playground/` などで動作を試せます
+
 
 ### 参考
 - [FastAPI](https://fastapi.tiangolo.com/ja/)

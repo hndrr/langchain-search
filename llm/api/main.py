@@ -1,10 +1,14 @@
+import asyncio
+from typing import List
+import httpx
 import config as config
 from api.routers import books_router
+from pydantic import BaseModel
 import uvicorn
 import logging
 from data.data import User, get_user
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Query, Request
 from langchain_openai import ChatOpenAI
 from langserve import add_routes
 from api.services.translate import translate_text
@@ -56,6 +60,26 @@ async def read_user(user_id: int) -> dict:
         raise HTTPException(status_code=404, detail="User not found")
     
     return {"user_id": user.id, "user_name": user.name}
+
+class ZipCodeRequest(BaseModel):
+    zip_codes: List[str]
+
+async def fetch_address(zip_code: str):
+    async with httpx.AsyncClient() as client:
+        response = await client.get(
+            f"https://zipcloud.ibsnet.co.jp/api/search?zipcode={zip_code}"
+            )
+        return response.json()
+    
+@app.get("/addresses/")
+async def get_addresses(zip_codes: List[str] = Query(
+        ...,  # 必須
+        example=["0600000"]  # 例を追加
+    )
+):
+    tasks = [fetch_address(zip_code) for zip_code in zip_codes]
+    results = await asyncio.gather(*tasks)
+    return results
 
 app.include_router(books_router.router)
 
