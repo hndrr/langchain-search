@@ -3,6 +3,7 @@ from typing import List
 import httpx
 import config as config
 from api.routers import books_router
+from api.schemas.zip_schemas import fetch_address
 from pydantic import BaseModel
 import uvicorn
 import logging
@@ -60,16 +61,6 @@ async def read_user(user_id: int) -> dict:
         raise HTTPException(status_code=404, detail="User not found")
     
     return {"user_id": user.id, "user_name": user.name}
-
-class ZipCodeRequest(BaseModel):
-    zip_codes: List[str]
-
-async def fetch_address(zip_code: str):
-    async with httpx.AsyncClient() as client:
-        response = await client.get(
-            f"https://zipcloud.ibsnet.co.jp/api/search?zipcode={zip_code}"
-            )
-        return response.json()
     
 @app.get("/addresses/")
 async def get_addresses(zip_codes: List[str] = Query(
