@@ -22,3 +22,11 @@ engine = create_engine(
 
 # セッションローカルを作成
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# データベースセッションの依存関係
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

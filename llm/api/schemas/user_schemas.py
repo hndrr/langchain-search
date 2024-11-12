@@ -1,10 +1,10 @@
-from typing import List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class UserBase(BaseModel):
-    id: int
-    name: str
-
+    id: int = Field(..., description="ユーザーIDの指定：必須",
+                        example=1)
+    name: str = Field(..., description="ユーザー名の指定：必須",
+                        example="John Smith")
 
 # class ItemBase(BaseModel):
 #     title: str
