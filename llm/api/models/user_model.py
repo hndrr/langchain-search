@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from data.database import Base
+from api.database import Base
 
 # モデルクラスと、テーブル定義をマッピングさせる
 

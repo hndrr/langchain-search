@@ -1,5 +1,5 @@
 from api.models.user_model import User
-from data.database import Base, SessionLocal, engine
+from api.database import Base, SessionLocal, engine
 from sqlalchemy import select
 
 # # データベースの初期化
