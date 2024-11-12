@@ -5,6 +5,9 @@ class UserBase(BaseModel):
                         example=1)
     name: str = Field(..., description="ユーザー名の指定：必須",
                         example="John Smith")
+    
+    class Config:
+        from_attributes = True  # PydanticモデルをORM（SQLAlchemy）と互換性を持たせる
 
 # class ItemBase(BaseModel):
 #     title: str
