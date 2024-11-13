@@ -43,6 +43,11 @@ docker compose up
 docker container exec -it <container> /bin/bash
 ```
 
+#### db migration
+```
+docker-compose exec demo-app python migration_db.py
+```
+
 ### ローカル環境の場合
 ```bash
 uvicorn api.main:app --reload
