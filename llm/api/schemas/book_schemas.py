@@ -1,6 +1,4 @@
-from api.models.book_model import Book
 from pydantic import BaseModel, Field
-from sqlalchemy.orm import Session
 
 class BookSchema(BaseModel):
     title: str = Field(..., description="タイトルの指定：必須",
