@@ -62,7 +62,7 @@ def performance_metrics():
 @app.get("/addresses/")
 async def get_addresses(zip_codes: List[str] = Query(
         ...,  # 必須
-        example=["0600000"]  # 例を追加
+        examples=["0600000"]  # 例を追加
     )
 ):
     tasks = [fetch_address(zip_code) for zip_code in zip_codes]
