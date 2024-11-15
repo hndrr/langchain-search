@@ -33,24 +33,29 @@ GOOGLE_API_KEY=""
 ## 実行
 ### dockerの場合
 
-```
+```bash
 docker compose up
 ```
 
 #### container内に入る
 
-```
+```bash
 docker container exec -it <container> /bin/bash
 ```
 
 #### db containerに入る
-```
+```bash
 docker-compose exec db mysql demo
 ```
 
 #### db migration
-```
+```bash
 docker-compose exec demo-app python migration_db.py
+```
+
+#### test実行
+```bash
+docker-compose run --entrypoint pytest demo-app
 ```
 
 ### ローカル環境の場合

@@ -1,13 +1,10 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 class UserBase(BaseModel):
-    id: int = Field(..., description="ユーザーIDの指定：必須",
-                        example=1)
-    name: str = Field(..., description="ユーザー名の指定：必須",
-                        example="John Smith")
+    id: int = Field(..., json_schema_extra={"description" : "ユーザーIDの指定：必須", "example" : 1})
+    name: str = Field(..., json_schema_extra={"description" : "ユーザー名の指定：必須", "example" : "John Smith"})
     
-    class Config:
-        from_attributes = True  # PydanticモデルをORM（SQLAlchemy）と互換性を持たせる
+    model_config = ConfigDict(from_attributes=True)  # ORMモードを有効化
 
 # class ItemBase(BaseModel):
 #     title: str
