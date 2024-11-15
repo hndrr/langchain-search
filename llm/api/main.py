@@ -7,7 +7,7 @@ from api.routers import books_router, users_router
 from api.schemas.zip_schemas import fetch_address
 from api.services.translate import translate_text
 from api.services.weather import compiled
-from api.database import SessionLocal, engine
+from api.database import async_engine
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -22,7 +22,12 @@ chain = translate_text(
     llm="gpt-4o-mini",
 )
 
-user_model.Base.metadata.create_all(bind=engine)
+
+# 非同期でのテーブル作成用の関数を追加
+async def create_all_tables():
+    async with async_engine.begin() as conn:
+        await conn.run_sync(user_model.Base.metadata.create_all)
+
 app = FastAPI(
     title="LLM Search",
     description="LLM Search",
@@ -90,4 +95,5 @@ add_routes(
 
 if __name__ == "__main__":
     # compiled.get_graph().print_ascii()
+    asyncio.run(create_all_tables())
     uvicorn.run(app, host="localhost", port=8000)

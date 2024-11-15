@@ -1,7 +1,7 @@
 # llm
 
 ## 仮想環境を作成(dockerの場合)
-```bashd
+```bash
 docker compose build
 ```
 
@@ -41,6 +41,16 @@ docker compose up
 
 ```
 docker container exec -it <container> /bin/bash
+```
+
+#### db containerに入る
+```
+docker-compose exec db mysql demo
+```
+
+#### db migration
+```
+docker-compose exec demo-app python migration_db.py
 ```
 
 ### ローカル環境の場合
