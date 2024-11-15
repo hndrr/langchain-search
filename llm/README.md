@@ -1,7 +1,7 @@
 # llm
 
 ## 仮想環境を作成(dockerの場合)
-```bashd
+```bash
 docker compose build
 ```
 
