@@ -72,6 +72,9 @@ async def update_book(book_id: int, book: BookSchema, db: AsyncSession = Depends
     # 書籍情報を更新
     existing_book.title = book.title
     existing_book.category = book.category
+    existing_book.publish_year = book.publish_year
+    existing_book.price = book.price
+
     await db.commit() # 更新を確定
     await db.refresh(existing_book) # データベースで生成されたIDを反映
     logger.info(f"書籍ID {book_id} の情報が更新されました。")
