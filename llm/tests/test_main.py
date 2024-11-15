@@ -1,12 +1,11 @@
 import pytest # type: ignore
 import pytest_asyncio # type: ignore
-from httpx import AsyncClient
+from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.orm import sessionmaker
 
 from api.database import get_db, Base
 from api.main import app
-import starlette
 
 ASYNC_DB_URL = "sqlite+aiosqlite:///:memory:"
 
@@ -32,20 +31,20 @@ async def async_client() -> AsyncClient: # type: ignore
     app.dependency_overrides[get_db] = get_test_db
 
     # テスト用に非同期HTTPクライアントを返却
-    async with AsyncClient(app=app, base_url="http://test") as client:
+    transport = ASGITransport(app=app)
+    async with AsyncClient(transport=transport, base_url="http://test") as client:
         yield client
 
 
 @pytest.mark.asyncio
-async def test_create_and_read(async_client):
-    response = await async_client.post("/tasks", json={"title": "テストタスク"})
-    assert response.status_code == starlette.status.HTTP_200_OK
-    response_obj = response.json()
-    assert response_obj["title"] == "テストタスク"
-
-    response = await async_client.get("/tasks")
-    assert response.status_code == starlette.status.HTTP_200_OK
-    response_obj = response.json()
-    assert len(response_obj) == 1
-    assert response_obj[0]["title"] == "テストタスク"
-    assert response_obj[0]["done"] is False
+async def test_create_user(async_client: AsyncClient):
+    # クエリパラメータとして name を送信
+    response = await async_client.post("/users/?name=テストユーザー")
+    
+    # ステータスコードの検証
+    assert response.status_code == 200, f"レスポンス: {response.json()}"
+    
+    # レスポンス内容の検証
+    data = response.json()
+    assert "id" in data
+    assert data["name"] == "テストユーザー"
