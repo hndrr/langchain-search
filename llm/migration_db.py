@@ -1,3 +1,4 @@
+from config import DB_USER, DB_PASSWORD, DB_HOST, DB_PORT
 from sqlalchemy import create_engine
 
 from api.database import Base
@@ -5,9 +6,11 @@ from api.models.book_model import Book  # インポートしてテーブルを�
 from api.models.user_model import User  # インポートしてテーブルを登録
 
 # データベースのURLを設定(非同期化しない)
-DB_URL = "mysql+pymysql://root@db:3306/demo?charset=utf8"
-engine = create_engine(DB_URL, echo=True)
+DB_URL = (
+    f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/demo?charset=utf8"
+)
 
+engine = create_engine(DB_URL, echo=True)
 
 def reset_database():
     # テーブルを削除して再作成
