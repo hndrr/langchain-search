@@ -1,4 +1,4 @@
-import config
+from config import TURSO_DATABASE_URL, TURSO_AUTH_TOKEN
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 Base = declarative_base()
 
 # TursoのデータベースURLを設定
-DATABASE_URL = f"sqlite+{config.TURSO_DATABASE_URL}/?authToken={config.TURSO_AUTH_TOKEN}&secure=true"
+DATABASE_URL = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
 
 # SQLiteデータベースのエンジンを作成
 engine = create_engine(
