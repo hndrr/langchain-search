@@ -50,7 +50,7 @@ docker-compose exec db mysql demo
 
 #### db migration
 ```bash
-docker-compose exec demo-app python migration_db.py
+docker-compose exec demo-app python migrate_db.py
 ```
 
 #### test実行
