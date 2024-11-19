@@ -1,4 +1,5 @@
-# langchain-test
+# langchain-search
+FastAPI, langchainの勉強用
 
 ## Install
 
