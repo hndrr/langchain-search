@@ -6,7 +6,6 @@ docker compose build
 ```
 
 ## 仮想環境を作成(venvの場合)
-
 ```bash
 python -m venv .venv
 . venv/bin/activate
@@ -67,6 +66,23 @@ uvicorn api.main:app --reload
 
 langserveのapp_routesでendpointを定義していれば `http://127.0.0.1:8000/translate/playground/` などで動作を試せます
 
+## cloud upload
+
+### GCP
+#### build
+```bash
+docker build -t gcr.io/trans-proposal-441803-v6/demo-app:latest --platform linux/amd64 -f Dockerfile.cloud .
+```
+#### push
+```bash
+docker push gcr.io/trans-proposal-441803-v6/demo-app:latest
+```
+Artifact Registry API を有効化している必要がある
+
+#### confirm
+```bash
+gcloud container images list
+```
 
 ### 参考
 - [FastAPI](https://fastapi.tiangolo.com/ja/)
