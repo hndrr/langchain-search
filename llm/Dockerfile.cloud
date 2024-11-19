@@ -15,6 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the current directory contents into the container at /src
 COPY api api
+COPY migrate_cloud_db.py ./
 COPY entrypoint.sh ./
 
 # Make port 8000 available to the world outside this container
