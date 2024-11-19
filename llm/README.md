@@ -71,11 +71,11 @@ langserveのapp_routesでendpointを定義していれば `http://127.0.0.1:8000
 ### GCP
 #### build
 ```bash
-docker build -t gcr.io/trans-proposal-441803-v6/demo-app:latest --platform linux/amd64 -f Dockerfile.cloud .
+docker build -t gcr.io/<project_id>/demo-app:latest --platform linux/amd64 -f Dockerfile.cloud .
 ```
 #### push
 ```bash
-docker push gcr.io/trans-proposal-441803-v6/demo-app:latest
+docker push gcr.io/<project_id>/demo-app:latest
 ```
 Artifact Registry API を有効化している必要がある
 
@@ -88,5 +88,6 @@ gcloud container images list
 - [FastAPI](https://fastapi.tiangolo.com/ja/)
 - [Zenn books FastAPI入門](https://zenn.dev/sh0nk/books/537bb028709ab9)
 - [動かして学ぶ！Python FastAPI開発入門](https://www.shoeisha.co.jp/book/detail/9784798177229)
+- [Python FastAPI本格入門](https://gihyo.jp/book/2024/978-4-297-14447-0)
 - [LangChain](https://langchain.com/)
 - [LangSmith](https://smith.langchain.com/)
