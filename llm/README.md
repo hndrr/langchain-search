@@ -68,7 +68,7 @@ langserveのapp_routesでendpointを定義していれば `http://127.0.0.1:8000
 
 ## cloud upload
 
-### GCP
+### GCP設定
 #### build
 ```bash
 docker build -t gcr.io/<project_id>/demo-app:latest --platform linux/amd64 -f Dockerfile.cloud .
@@ -77,7 +77,7 @@ docker build -t gcr.io/<project_id>/demo-app:latest --platform linux/amd64 -f Do
 ```bash
 docker push gcr.io/<project_id>/demo-app:latest
 ```
-Artifact Registry API を有効化している必要がある
+※ Artifact Registry API を有効化している必要がある
 
 #### confirm
 ```bash
