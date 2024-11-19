@@ -2,19 +2,17 @@ import config as config
 import asyncio
 from typing import List
 from api.models import user_model
-from api.models.user_model import User
 from api.routers import books_router, users_router
 from api.schemas.zip_schemas import fetch_address
 from api.services.translate import translate_text
 from api.services.weather import compiled
 from api.database import async_engine
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session
 import uvicorn
 import logging
 
-from fastapi import Depends, FastAPI, HTTPException, Query, Request
+from fastapi import FastAPI, Query, Request
+from fastapi.middleware.cors import CORSMiddleware
 from langchain_openai import ChatOpenAI
 from langserve import add_routes
 
@@ -63,8 +61,7 @@ def performance_metrics():
 async def get_addresses(zip_codes: List[str] = Query(
         ...,  # 必須
         examples=["0600000"]  # 例を追加
-    )
-):
+    )):
     tasks = [fetch_address(zip_code) for zip_code in zip_codes]
     results = await asyncio.gather(*tasks)
     return results
@@ -91,6 +88,15 @@ add_routes(
     app,
     compiled,
     path="/graph",
+)
+
+# CORSミドルウェアの追加
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
 )
 
 if __name__ == "__main__":
