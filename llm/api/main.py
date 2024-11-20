@@ -2,7 +2,7 @@ import config as config
 import asyncio
 from typing import List
 from api.models import user_model
-from api.routers import books_router, users_router
+from api.routers import books_router, memos_router, users_router
 from api.schemas.zip_schemas import fetch_address
 from api.services.translate import translate_text
 from api.services.weather import compiled
@@ -69,6 +69,7 @@ async def get_addresses(zip_codes: List[str] = Query(
 
 app.include_router(users_router.router)
 app.include_router(books_router.router)
+app.include_router(memos_router.router)
 
 ## add_routesの第2引数にはchainを指定する
 add_routes(
